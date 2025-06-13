@@ -1,0 +1,37 @@
+shaders = "2"
+
+# Shader 1: Apply LUT + color grading
+shader0 = "shaders/LUT/lut_colorgrade.slang"
+wrap_mode0 = "clamp_to_border"
+mipmap_input0 = "false"
+alias0 = ""
+float_framebuffer0 = "false"
+srgb_framebuffer0 = "false"
+
+# Customization
+lut_mix = "100"
+saturation = "1.05"
+r = "0.99"
+g = "1.00"
+b = "0.99"
+
+# GBA LUT taken from N*do Online Emulator, adjusted to reduce greenish tint
+textures = "SamplerLUT"
+SamplerLUT = "shaders/lut/maps/16gbabalanced_warmer.png"
+SamplerLUT_linear = "true"
+SamplerLUT_wrap_mode = "clamp_to_border"
+SamplerLUT_mipmap = "false"
+
+# Shader 2: sbtl_lcd filter
+shader1 = "shaders/sbtl_lcd/sbtl_lcd.slang"
+wrap_mode1 = "clamp_to_border"
+mipmap_input1 = "false"
+alias1 = ""
+
+# Customization
+strength = "100"
+vlc_mix = "0"
+vlg_mix = "100"
+vl_brt = "60"
+hl_brt = "16"
+brightness = "100"
