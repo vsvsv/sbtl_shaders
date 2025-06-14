@@ -326,6 +326,4 @@ scale_x24 = "1"
 scale_y24 = "1"
 
 # Customizations for CRT shader
-# LOWLUMSCAN = "4.5"
-# HILUMSCAN = "17.0"
-MASK_DARK = "0.5"
+MASK_DARK = "0.45"
