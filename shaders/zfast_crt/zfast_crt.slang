@@ -75,16 +75,21 @@ void main() {
     vec2 f = p - i;
     p = (i + 4.0 * f * f * f) * invDims;
     p.x = mix(p.x, vTexCoord.x, BLURSCALEX);
+    float X = f.x * f.x;
+    float XX = X * X;
     float Y = f.y * f.y;
     float YY = Y * Y;
 
-    float whichmask = fract(floor(vTexCoord.x * params.OutputSize.x) * -0.3333);
+    float whichmask = fract(floor(vTexCoord.y * params.OutputSize.y) * -0.3333);
     float mask = 1.0 + float(whichmask <= 0.33333) * -MASK_DARK;
+    // float mask = 1.0;
 
     vec3 colour = texture(Source, p).rgb;
 
-    float scanLineWeight = (BRIGHTBOOST - LOWLUMSCAN * (Y - 2.05 * YY));
-    float scanLineWeightB = 1.0 - HILUMSCAN * (YY - 2.8 * YY * Y);
+    // float scanLineWeight = (BRIGHTBOOST - LOWLUMSCAN * (Y - 2.05 * YY));
+    // float scanLineWeightB = 1.0 - HILUMSCAN * (YY - 2.8 * YY * Y);
+    float scanLineWeight = (BRIGHTBOOST - LOWLUMSCAN * (X - 2.05 * XX));
+    float scanLineWeightB = 1.0 - HILUMSCAN * (XX - 2.8 * XX * X);
 
     FragColor.rgb = colour.rgb * mix(scanLineWeight * mask, scanLineWeightB, dot(colour.rgb, vec3(maskFade)));
 }
